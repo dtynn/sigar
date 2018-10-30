@@ -11,7 +11,7 @@ include(InstallRequiredSystemLibraries)
 enable_testing()
 
 if(NOT CMAKE_BUILD_TYPE)
-	set(CMAKE_BUILD_TYPE "Debug")
+	set(CMAKE_BUILD_TYPE "Release")
 endif()
 
 file(STRINGS ${PROJECT_SOURCE_DIR}/version.properties PROJECT_PROPERTIES)

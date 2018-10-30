@@ -95,9 +95,9 @@ typedef long long sigar_int64_t;
 #   define SIGAR_ENXIO  ENXIO
 #endif
 
-#ifdef _WIN32
+#ifdef WIN32
 #   define SIGAR_DECLARE(type) \
-        __declspec(dllexport) type __stdcall
+        __declspec(dllexport) type __cdecl
 #else
 #   define SIGAR_DECLARE(type) type
 #endif
@@ -141,7 +141,7 @@ typedef struct {
     sigar_uint64_t
         ram,
         total,
-        used, 
+        used,
         free,
         actual_used,
         actual_free;
@@ -154,7 +154,7 @@ SIGAR_DECLARE(int) sigar_mem_get(sigar_t *sigar, sigar_mem_t *mem);
 typedef struct {
     sigar_uint64_t
         total,
-        used, 
+        used,
         free,
         page_in,
         page_out;
@@ -164,7 +164,7 @@ SIGAR_DECLARE(int) sigar_swap_get(sigar_t *sigar, sigar_swap_t *swap);
 
 typedef struct {
     sigar_uint64_t
-        user, 
+        user,
         sys,
         nice,
         idle,
@@ -293,7 +293,7 @@ SIGAR_DECLARE(int) sigar_proc_mem_get(sigar_t *sigar, sigar_pid_t pid,
                                       sigar_proc_mem_t *procmem);
 
 typedef struct {
-     sigar_uint64_t 
+     sigar_uint64_t
         bytes_read,
         bytes_written,
         bytes_total;
@@ -326,7 +326,7 @@ SIGAR_DECLARE(int) sigar_proc_cumulative_disk_io_get(sigar_t *sigar, sigar_pid_t
                                           sigar_proc_cumulative_disk_io_t *proc_cumulative_disk_io);
 
 
-typedef struct  { 
+typedef struct  {
     sigar_uint64_t dummy;
 }sigar_dump_pid_cache_t;
 
@@ -424,7 +424,7 @@ typedef struct {
     /* used for SIGAR_PROC_ENV_KEY */
     const char *key;
     int klen;
-    
+
     int (*env_getter)(void *, const char *, int, char *, int);
 } sigar_proc_env_t;
 
@@ -466,7 +466,7 @@ typedef struct {
 SIGAR_DECLARE(int) sigar_thread_cpu_get(sigar_t *sigar,
                                         sigar_uint64_t id,
                                         sigar_thread_cpu_t *cpu);
-                                            
+
 typedef enum {
     SIGAR_FSTYPE_UNKNOWN,
     SIGAR_FSTYPE_NONE,
@@ -930,7 +930,7 @@ SIGAR_DECLARE(int) sigar_who_list_get(sigar_t *sigar,
 SIGAR_DECLARE(int) sigar_who_list_destroy(sigar_t *sigar,
                                           sigar_who_list_t *wholist);
 
-SIGAR_DECLARE(int) sigar_proc_port_get(sigar_t *sigar, 
+SIGAR_DECLARE(int) sigar_proc_port_get(sigar_t *sigar,
                                        int protocol, unsigned long port,
                                        sigar_pid_t *pid);
 
